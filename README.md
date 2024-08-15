@@ -1,6 +1,9 @@
 APPLYING Q-LEARNING TO FIND THE BEST ROUTES IN SINGAPORE'S RAIL NETWORK (MRT)
 =============================================================================
 
+Using Q-learning to find the fastest routes in Singapore's rail network (MRT):
+https://prog4321.github.io/best_route_qlearner/
+
 REFERENCES:
 1. http://firsttimeprogrammer.blogspot.com/2016/09/getting-ai-smarter-with-q-learning.html
 2. https://amunategui.github.io/reinforcement-learning/index.html
