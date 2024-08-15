@@ -93,6 +93,11 @@
 # For the front-end, for simplicity of demonstation I have chosen to use Pyscript,
 # along with some simple Javascript for functionality and CSS for formatting.
 
+# Please include a credit under my Github moniker 'prog4321' if you wish to use/modify
+# the code for your own projects. Thank you.
+
+# I will try to include more documentation for this project where and when I can.
+
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
