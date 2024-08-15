@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>BetaMERT</title>
+        <link rel="stylesheet" href="https://pyscript.net/releases/2024.8.1/core.css">
+        <script type="module" src="https://pyscript.net/releases/2024.8.1/core.js"></script>
+
+        <link rel="stylesheet" href="./styles/style.css">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com"/>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+        <link href="https://fonts.googleapis.com/css2?family=Sono:wght@400;700&display=swap"
+            rel="stylesheet"/>
+
+        <script type="module">
+
+            const loading_dialog = document.getElementById('loading_dialog');
+            const loading_text = document.getElementById('loading_text')
+            const flag = document.getElementById('flag');
+            const init_text = "Loading, please wait"
+            loading_text.innerText = init_text
+
+            setInterval(updateLoadingText, 800);
+
+            function updateLoadingText() {
+                if (loading_text.innerText == init_text + "..."){
+                    loading_text.innerText = init_text;
+                    }
+                else {
+                    loading_text.innerText += ".";
+                    }
+            }
+          
+            flag.addEventListener('click', () => {loading_dialog.close()});
+            loading_dialog.showModal();
+
+        </script>
+  
+  </head>
+<body>
+    <dialog id="loading_dialog">
+        <p id="loading_text"></p>
+    </dialog>
+
+    <div class="main_block">
+        <div id="title">BetaMERT</div>
+        <div id="subtitle">Find the fastest route on the MRT</div>
+
+        <div id="period_container" class="parameters flex_container" style="visibility: hidden">
+            <div class="card_label">
+                Period:
+            </div>
+            <div class="card_dropdown">
+                <select id="peak_dropdown" class="parameters">
+                    <option value="off_peak">Off-peak</option>
+                    <option value="peak_hr">Peak Hour</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="start_node_container" class="parameters flex_container" style="visibility: hidden">
+            <div class="card_label">
+                Start:
+            </div>
+            <div class="card_dropdown">
+                <select id="start_node_dropdown" class="parameters">
+                </select>
+            </div>
+        </div>
+
+        <div id="end_node_container" class="parameters flex_container" style="visibility: hidden">
+            <div class="card_label">
+                End:
+            </div>
+            <div class="card_dropdown">
+                <select id="end_node_dropdown" class="parameters">
+                </select>
+            </div>
+        </div>
+
+        <br>
+
+        <div id="prediction_btn_container" style="visibility: hidden">
+            <button py-click="run_prediction" class="button" >Show Fastest Route</button>
+        </div>
+
+        <br>
+
+        <div id="status_box" class="msg"></div>
+
+        <div id="best_route_box" class="msg"></div>
+
+        <div id="cost_box" class="msg"></div>
+
+        <br>
+
+        <div id="duration_box" class="msg"></div>
+
+        <br>
+
+        <div id="perf_log_box" class="msg"></div>
+
+        <br>
+
+        <div id="graph_container">
+            <div id="pred1_graph_box" class="graph"></div>
+            <div id="pred2_graph_box" class="graph"></div>
+            <div id="pred3_graph_box" class="graph"></div>
+        </div>
+
+        <div id="flag"></div>
+
+        <div id="footer">
+            Developed by prog4321
+        </div>
+
+        <br>
+
+    </div>
+
+    <div id="map_container" style="visibility: hidden">
+        <img draggable='false' id="mrt_map" src="./images/mrt_map.svg" alt="MRT Map"></img>
+    </div>
+    
+    <script>
+        let _startX = 0,
+            _startY = 0,
+            _scrollTop = 0,
+            _scrollLeft = 0;
+
+            document.onmousedown = OnMouseDown;
+            document.onmouseup = OnMouseUp;
+
+            function OnMouseDown(event) {
+                document.onmousemove = OnMouseMove;
+                _startX = event.clientX;
+                _startY = event.clientY;
+                _scrollTop = document.documentElement.scrollTop;
+                _scrollLeft = document.documentElement.scrollLeft;
+            }
+
+            function OnMouseMove(event) {
+                window.scrollTo({
+                    left: _scrollLeft + (_startX - event.clientX),
+                    top: _scrollTop + (_startY - event.clientY)
+                });
+            }
+
+            function OnMouseUp() {
+                document.onmousemove = null;
+            }
+    </script>
+
+</body>
+<script type="py" src="./main.py" config="./pyscript.toml"></script>
+</html>

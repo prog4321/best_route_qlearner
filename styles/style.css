@@ -1,0 +1,144 @@
+body {
+    background-color: lightgrey;
+    margin: 0;
+    }
+
+* {
+    /* font-family: Arial, sans-serif; */
+    font-family: "Sono", sans-serif;
+    color:black;
+    }
+
+div {
+    /* border: 1px solid black; */
+    background-color: lightgrey;
+    display: block;
+    }
+
+.main_block {
+    display: flex;
+    flex-direction: column;
+    width: 28%;
+    min-width: 340px;
+    float:left;
+    margin:0;
+    position: fixed;
+    overflow: auto;
+    height: 100vh;
+    }
+
+#title {
+    background-color: beige;
+    padding: 4px 6px 4px 12px;
+    font-size: 30pt;
+    font-weight: 900%;
+    }
+
+#subtitle {
+    background-color: lightgrey;
+    padding: 10px 4px 10px 12px;
+    margin-bottom: 4px;
+    font-size: 10pt;
+    font-style: italic;
+    }
+
+#map_container {
+    float: right;
+    width: 60%;
+    height: 100vh;
+    vertical-align: top;
+    }
+
+#mrt_map {
+    width: 1350px;
+    }
+
+.parameters {
+    font-size: 10pt;
+    padding: 4px 4px 4px 12px;
+    /* vertical-align: center; */
+    }
+
+.button {
+    position:relative;
+    font-size: 10pt;
+    height: 45px;
+    width: 125px;
+    background-color: darkblue;
+    border-radius: 8px;
+    left:12px;
+    color: whitesmoke
+    }
+
+#footer {
+    background-color: beige;
+    padding: 4px 4px 4px 12px;
+    clear: left;
+    flex-direction: column;
+    font-size: 10pt;;
+    }
+
+#loading_dialog {
+    position: fixed;
+    top: 110px;
+    margin: 0 0 0 6px;
+    width: 300px;
+    outline: none;
+    border: none;
+    background: transparent;
+    }
+
+#loading_text {
+    color: red;
+    font-size: 15pt;
+    font-weight: bold;
+    }
+
+.msg {
+    font-size: 10pt;
+    padding: 0px 10px 0px 12px;
+    }
+
+#status_box, #cost_box {
+    color:darkblue;
+    }
+
+.flex_container {
+    display: flex;
+    font-size: 10pt;
+    margin-bottom: 4px;
+    }
+
+.card_label {
+    display:inline-block;
+    min-width: 60px;
+    padding-top:5px;
+    }
+
+.card_dropdown {
+    display:inline-block;
+    }
+
+#status_box, #cost_box {
+    font-weight: bold;
+    }
+
+.graph {
+    overflow: auto;
+    padding: 4px 10px 4px 10px;
+    }
+
+/* @media (min-width: 481px) and (max-width: 1200px) { */
+@media (max-width: 700px) {
+    #mrt_map {
+        display: none;
+        }
+    #title, #footer {
+        background-color: lightblue;
+        width:100%
+        }
+    .main_block {
+        width: 100%;
+        }
+
+}
