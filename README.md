@@ -1,6 +1,6 @@
 ### APPLYING Q-LEARNING TO FIND THE FASTEST ROUTES IN SINGAPORE'S RAIL NETWORK (MRT)
 
-Using Q-learning to find the fastest routes in Singapore's rail network (MRT):
+Using Q-learning to find the fastest routes in Singapore's rail network (MRT), with front-end web implementation using Pyscript:
 https://prog4321.github.io/best_route_qlearner/
 
 REFERENCES:
