@@ -130,10 +130,10 @@ async def run_prediction(event):
         period_text = 'off-peak'
     
     # CREATE AN INSTANCE OF THE BestRouteQLearner CLASS AND PREDICT THE BEST PATH ============
-    brq = BestRouteQLearner(alpha=0.9,
+    brq = BestRouteQLearner(alpha=1.0,
                             gamma=0.9,
                             epochs=30_000,
-                            reward_coef=7,
+                            reward_coef=20,
                             is_peak_hour=is_peak_hour,
                             show_dev_msg=show_dev_msg)
     

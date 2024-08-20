@@ -123,10 +123,10 @@ sleep_interval = 0.001
 class BestRouteQLearner(object):
 
     def __init__(self,
-                alpha=0.9,
+                alpha=1.0,
                 gamma=0.9,
                 epochs=30_000,
-                reward_coef=7,
+                reward_coef=20,
                 is_peak_hour=False,
                 peak_hour_cost=2,
                 off_peak_cost=5,
@@ -143,7 +143,6 @@ class BestRouteQLearner(object):
             self.wait_cost = off_peak_cost
 
         self.show_dev_msg = show_dev_msg
-        self.prediction_count = 0
 
     def get_available_actions(self, state):
 
@@ -431,6 +430,9 @@ class BestRouteQLearner(object):
 
     async def predict(self, start_node, end_node):
 
+        # Reset the prediction count
+        self.prediction_count = 0
+
         if start_node not in self.orig_nodes[:,0]:
             status_box.innerText = 'The Start Node ' + start_node + \
                 ' does not exist in the dataset.'
@@ -610,134 +612,3 @@ class BestRouteQLearner(object):
 
         return True, df_best_route
 # =================================================================================================
-
-
-
-# GRID SEARCH FOR FINDING SUITABLE HYPERPARAMETERS, INCLUDED HERE FOR COMPLETENESS ================
-# This was desgined to be run from the IDE but can be modified for use with the website.
-
-    # def grid_search(self,
-    #                 start_end_nodes,
-    #                 routes_true,
-    #                 output_csv,
-    #                 n_iter,
-    #                 epoch_count,
-    #                 alpha_range,
-    #                 gamma_range,
-    #                 reward_coef_range):
-        
-    #     if self.show_dev_msg == True:
-    #         self.show_dev_msg = False
-    #         to_reset_dev_msg = True
-        
-    #     orig_alpha = self.alpha
-    #     orig_gamma = self.gamma
-    #     orig_epochs = self.epochs
-    #     orig_reward_coef = self.reward_coef
-
-    #     self.n_iter = n_iter
-    #     self.epochs = epoch_count
-
-    #     self.alpha_range = alpha_range
-    #     self.gamma_range = gamma_range
-    #     self.reward_coef_range = reward_coef_range
-
-    #     tab = '\t'
-
-    #     print('\nRunning Grid Search now, please wait until completion')
-    #     print('=====================================================')
-    #     print(f'Index{tab}Alpha{tab}Gamma{tab}Reward Coef{tab}Accuracy')
-
-    #     index_log = []
-    #     alpha_log = []
-    #     gamma_log = []
-    #     reward_coef_log = []
-    #     accuracy_log = []
-
-    #     index = 1
-        
-    #     for i in range(n_iter):
-    #         for alpha in alpha_range:
-    #             for gamma in gamma_range:
-    #                 for reward_coef in reward_coef_range:
-
-    #                     self.alpha = alpha
-    #                     self.gamma = gamma
-    #                     self.reward_coef = reward_coef
-                        
-    #                     pred_score_log = []
-
-    #                     for sen in start_end_nodes:
-
-    #                         s_node, e_node = sen[0], sen[1]
-
-    #                         is_valid_route, df_best_route = self.predict(start_node=s_node, end_node=e_node)
-    #                         if is_valid_route == True:
-
-    #                             if self.node_id_alias != None:
-    #                                 node_id_alias = self.node_id_alias
-    #                             else:
-    #                                 node_id_alias = 'ID'
-    #                             best_route_pred = df_best_route[[node_id_alias]].values.ravel()
-
-    #                             idx = np.where((start_end_nodes == [s_node, e_node]).all(axis=1))[0][0]
-    #                             best_route_true = routes_true[idx]
-    #                             best_route_true = np.array([x for x in best_route_true if pd.notnull(x)])
-
-    #                             result = np.array_equal(best_route_true, best_route_pred)
-    #                             if result ==  True:
-    #                                 pred_score_log.append(1)
-    #                             else:
-    #                                 pred_score_log.append(0)
-    #                         else:
-    #                             pred_score_log.append(0)
-                        
-    #                     accuracy = sum(pred_score_log) / len(pred_score_log)
-
-    #                     index_log.append(index)
-    #                     alpha_log.append(alpha)
-    #                     gamma_log.append(gamma)
-    #                     reward_coef_log.append(reward_coef)
-    #                     accuracy_log.append(accuracy)
-
-    #                     print(f'{index}{tab}{alpha:.1}{tab}{gamma:.1}{tab}{reward_coef}{tab}{tab}{accuracy:.2}')
-
-    #                     index += 1
-
-    #     # Reset the following hyperparameters
-    #     self.alpha = orig_alpha
-    #     self.gamma = orig_gamma
-    #     self.epochs = orig_epochs
-    #     self.reward_coef = orig_reward_coef
-
-    #     if to_reset_dev_msg == True:
-    #         self.show_dev_msg = True
-
-    #     plt.plot(range(1, index), accuracy_log)
-    #     plt.show()
-
-    #     grid_search_dict = {
-    #         'Index': index_log,
-    #         'Alpha': alpha_log,
-    #         'Gamma': gamma_log,
-    #         'Reward Coef': reward_coef_log,
-    #         'Accuracy': accuracy_log
-    #     }
-    #     df_grid_search = pd.DataFrame(grid_search_dict)
-
-    #     if output_csv[-4:] == '.csv':
-    #         output_csv = output_csv.rstrip('.csv')
-
-    #     dt = datetime.datetime.now()
-    #     dt = dt.strftime("%Y") + '_' + dt.strftime("%m") + '_' + \
-    #         dt.strftime("%d") + '_' + dt.strftime("%H") + '_' + \
-    #         dt.strftime("%M") + '_' + dt.strftime("%S")
-
-    #     output_csv = output_csv + '_' + dt + '.csv'
-
-    #     df_grid_search.to_csv(output_csv, encoding='utf-8',
-    #                         index=False, header=True)
-
-    #     print(f'\nGrid Search completed.')
-    #     print(f'The results have been saved into {output_csv}')
-# ====================================================================================

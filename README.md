@@ -1,5 +1,4 @@
-APPLYING Q-LEARNING TO FIND THE BEST ROUTES IN SINGAPORE'S RAIL NETWORK (MRT)
-=============================================================================
+### APPLYING Q-LEARNING TO FIND THE FASTEST ROUTES IN SINGAPORE'S RAIL NETWORK (MRT)
 
 Using Q-learning to find the fastest routes in Singapore's rail network (MRT):
 https://prog4321.github.io/best_route_qlearner/
@@ -30,7 +29,8 @@ maximum cost, which I define as the maximum of the travelling times between any 
 plus a chosen waiting time (i.e. wait cost) for the period (peak hour or off-peak). I then
 use 1 to deduct this normalised cost, in order to get a reward value. So the lesser the cost,
 the greater the reward. I further multiply this reward value with what I call a
-reward coefficient. After running a grid search-like algorithm (included below for reference)
+reward coefficient. After running a grid search-like algorithm
+(pls see https://www.kaggle.com/code/prog4321/using-q-learning-to-find-the-fastest-train-routes)
 to find the best performing values for the alpha and gamma hyperparameters, there is also a
 range of values for this reward coefficient that work well for the chosen alpha and gamma values.
 I have put in a set of default values for initialising the BestRouteQLearner object that will
