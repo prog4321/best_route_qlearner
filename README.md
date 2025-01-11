@@ -40,7 +40,7 @@ accordingly for optimal usage on other datasets.
 The core MRT data can be found in the 'mrt_data.xlsx' file inside the Data folder of this
 project. It includes 3 worksheets:
 
-1. Nodes
+<b>1. Nodes</b><br>
 This worksheet stores the Station Codes and Station Names. Each Station Code has to be unique
 (just like in a table in a relational database). NB: The train interchanges must share the same
 Station Name (for e.g. 'Bishan' for station codes NS17 and CC15). As the program evaluates the
@@ -53,14 +53,14 @@ part of the route, naturally there is also a waiting time (wait cost) of having 
 next train at the CC15 platform. This wait cost will be the chosen wait cost for the peak hour
 and off-peak periods, and can be set when the BestRouteQLearner object is initialised.
 
-2. Routes
+<b>2. Routes</b><br>
 Here, we indicate the Start Station Codes and the End Station Codes, as well as the travelling
 time (i.e. cost) between the two respective stations. In the case of interchanges, the cost
 to be indicated here will be the walking time between the 2 platforms of that interchange.
 (The Station Names in this workwheet simply use the vlookup function in Excel to reflect the
 Station Names that were entered in the Nodes worksheet.)
 
-3. Interchanges
+<b>3. Interchanges</b><br>
 Here, we list down the Station Codes that belong to each interchange. The program will
 check the route for any transits at the interchanges (as mentioned above) and add a
 wait cost to the route if applicable.
@@ -73,18 +73,18 @@ main.py file to extract the data from these 3 CSV files. Specifically, for the '
 method of the BestRouteQLearner object, we require numpy arrays in the following 
 format:
 
-1. Nodes
+<b>1. Nodes</b><br>
 Node ID, Node Name
 Essentially the Station Code and Station Name
 
-2. Routes
+<b>2. Routes</b><br>
 Start Node ID, End Node ID, Cost
 I.e. the start Station Code, the end Station Code, and the travelling/waiting time
 between the 2 stations. NB: the program assumes the time taken to go from
 Station A to Station B will be the same as the time taken to go from Station B to
 Station A.
 
-3. Interchanges
+<b>3. Interchanges</b><br>
 All the Node IDs for each interchange are listed in subsequent columns,
 starting at the 2nd column, as in the Interchanges worksheet.
 
