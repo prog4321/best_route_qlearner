@@ -1,15 +1,23 @@
 ### APPLYING Q-LEARNING TO FIND THE FASTEST ROUTES IN SINGAPORE'S RAIL NETWORK (MRT)
 
-Using Q-learning to find the fastest routes in Singapore's rail network (MRT), with front-end web implementation using Pyscript:
+Please try this website that uses Q-learning to find the fastest routes in Singapore's rail network (MRT):<br>
 https://prog4321.github.io/best_route_qlearner/
+
+The front-end web implementation was done using Pyscript, HTML, CSS and a bit of Javascript.
+
+[NB: The website is not optimised for speed at the moment so kindly be patient while running it :).<br>
+I hope to do an optimised version using Flask and Postgres, with the best routes computed in advance via an algorithm that is run offline, and the results stored in and retrieved from Postgres. This will speed things up considerably.]
+
+The core algorithms in use (the heart of this project) can be found here:<br>
+https://github.com/prog4321/best_route_qlearner/blob/main/best_route_qlearner_model.py
 
 REFERENCES:
 1. http://firsttimeprogrammer.blogspot.com/2016/09/getting-ai-smarter-with-q-learning.html
 2. https://amunategui.github.io/reinforcement-learning/index.html
 3. 'Artificial Intelligence Programming with Python' by Perry Xiao (Wiley)
 
-Note: Please first read through Ref #1 above. Refs #2 and #3 both employ Ref #1's
-concepts and Python code quite heavily.
+Note: Please first read through Ref #1 above.<br>
+Refs #2 and #3 both employ Ref #1's concepts and Python code quite heavily.
 
 Most examples on Q-learning that I have come across online are either very closely based
 on Ref #1, or apply Q-learning in a simulated/gaming environment (for e.g. OpenAI's
@@ -74,12 +82,12 @@ method of the BestRouteQLearner object, we require numpy arrays in the following
 format:
 
 <b>1. Nodes</b><br>
-Node ID, Node Name
+Node ID, Node Name<br>
 Essentially the Station Code and Station Name
 
 <b>2. Routes</b><br>
-Start Node ID, End Node ID, Cost
-I.e. the start Station Code, the end Station Code, and the travelling/waiting time
+Start Node ID, End Node ID, Cost<br>
+I.e. the start Station Code, the end Station Code, and the travelling/waiting time (cost)
 between the 2 stations. NB: the program assumes the time taken to go from
 Station A to Station B will be the same as the time taken to go from Station B to
 Station A.
